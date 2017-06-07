@@ -1,0 +1,22 @@
+{
+  "name": "bakery-bi",
+  "version": "1.0.0",
+  "description": "Bakery",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Krazeus/bakery-bi.git"
+  },
+  "author": "Miguel Yax <mig_dj@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Krazeus/bakery-bi/issues"
+  },
+  "homepage": "https://github.com/Krazeus/bakery-bi#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
