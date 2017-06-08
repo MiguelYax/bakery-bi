@@ -15,7 +15,7 @@ const fs = require('fs'),
         { name: 'Pan dulce', c: 0.33 },
         { name: 'Pan frances', c: 0.33 },
         { name: 'Pan de yemas', c: 1 },
-        { name: 'Xeca', c: 3 },
+        { name: 'Xeca', c: 2 },
         { name: 'Champurrada', c: 1 },
         { name: 'Pirujo', c: 1 },
         { name: 'Concha', c: 1 },
@@ -30,12 +30,13 @@ const fs = require('fs'),
  */
 let rand = function (max, min) {
     max = max || 10;
-    min = min || 1;
+    min = min || 0;
     return Math.floor((Math.random() * max)) + min;
 };
 
-let randDate = function () {
-    let date = [rand(31), rand(12), 2010 + rand(5)];
+let randDate = function (year) {
+    // let date = [rand(31), rand(12), 2010 + rand(5)];
+    let date = [rand(31, 1), rand(12, 1), year];
     while (!moment(date.join('/'), 'DD/MM/YYYY').isValid()) {
         date[0] = rand(31);
     }
@@ -49,17 +50,36 @@ let date = {},
     sales = [],
     pl = products.length;
 
+let large = 100000,
+    year = 2012,
+    /**
+     * @todo corregir implementacion de rangos
+     */
+    range = [10, 15, 20, 25, 30].map(function (e, i, a) {
+        let sub = large * (((i) ? e + a[i - 1] : e) / 100);
+
+        return sub;
+    }),
+    cursor = 0;
+
 for (var i = 0; i < 100000; i++) {
-    date = randDate();
+    if (i > range[cursor]) {
+        ++cursor;
+        ++year;
+        //<debug>
+
+        console.log('range', i);
+        //</debug>
+    }
+    date = randDate(year);
     unit = rand(300);
-    prod = products[rand(pl) - 1];
+    prod = products[rand(pl)];
 
     sales.push({
-        t: stores[rand(4) - 1],
+        t: stores[rand(3)],
         y: date.y,
         f: date.f,
-        tp: types[rand(2) - 1],
-        // ic: guid.raw(),
+        tp: types[rand(1)],
         i: guid.raw(),
         p: prod.name,
         u: unit,
