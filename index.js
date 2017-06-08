@@ -12,18 +12,18 @@ const fs = require('fs'),
     stores = ['Totonicapan', 'San Cristobal', 'Quetzaltenango', '4 Caminos'],
     types = ['Tarjeta', 'Efectivo'],
     products = [
-        { name: 'Pan dulce', c: 0.33 },
-        { name: 'Pan frances', c: 0.33 },
-        { name: 'Pan de yemas', c: 1 },
-        { name: 'Xeca', c: 2 },
-        { name: 'Champurrada', c: 1 },
-        { name: 'Pirujo', c: 1 },
-        { name: 'Concha', c: 1 },
-        { name: 'Cubiletes', c: 1.5 },
-        { name: 'Pan galleta', c: 1 },
+        { n: 'Pan dulce', c: 0.33 },
+        { n: 'Pan frances', c: 0.33 },
+        { n: 'Pan de yemas', c: 1 },
+        { n: 'Xeca', c: 3 },
+        { n: 'Champurrada', c: 1 },
+        { n: 'Pirujo', c: 1 },
+        { n: 'Concha', c: 1.5 },
+        { n: 'Cubiletes', c: 1.5 },
+        { n: 'Pan galleta', c: 1 },
     ];
 /**
- * @method getIndex obtiene un numero aleatorio 
+ * @method getIndex obtiene un numero aleatorio
  * @param {Number} limit  `10` limite
  * @return {number} index `0` numero aleatorio
  * @private
@@ -34,13 +34,17 @@ let rand = function (max, min) {
     return Math.floor((Math.random() * max)) + min;
 };
 
-let randDate = function (year) {
-    // let date = [rand(31), rand(12), 2010 + rand(5)];
-    let date = [rand(31, 1), rand(12, 1), year];
+let randDate = function (y, m) {
+    let date = [rand(31, 1), rand(12, 1), y];
+
     while (!moment(date.join('/'), 'DD/MM/YYYY').isValid()) {
         date[0] = rand(31);
     }
-    return { f: date.join('/'), d: date[0], m: date[1], y: date[2] };
+    return {
+        f: date.join('/'),
+        d: date[0],
+        m: date[1], y: date[2]
+    };
 };
 
 // // let sales = dates.map(function (d, i) {
@@ -55,37 +59,36 @@ let large = 100000,
     /**
      * @todo corregir implementacion de rangos
      */
-    range = [10, 15, 20, 25, 30].map(function (e, i, a) {
-        let sub = large * (((i) ? e + a[i - 1] : e) / 100);
 
-        return sub;
+
+    /**
+     * @todo corregir implementacion de rangos
+     */
+    range = [12, 13, 22, 23, 30].map(function (e, i, a) {
+        return large * (e / 100);
     }),
     cursor = 0;
 
-for (var i = 0; i < 100000; i++) {
-    if (i > range[cursor]) {
-        ++cursor;
-        ++year;
-        //<debug>
+for (var i = 0; i < range.length; i++) {
+    ++year;
+    for (var j = 0; j < range[i]; j++) {
 
-        console.log('range', i);
-        //</debug>
+        date = randDate(year);
+        unit = rand(300);
+        prod = products[rand(pl)];
+
+        sales.push({
+            i: guid.raw(),
+            t: stores[rand(3)],
+            y: date.y,
+            f: date.f,
+            tp: types[rand(1)],
+            p: prod.n,
+            u: unit,
+            uc: prod.c,
+            m: parseFloat(unit * prod.c).toFixed(2)
+        });
     }
-    date = randDate(year);
-    unit = rand(300);
-    prod = products[rand(pl)];
-
-    sales.push({
-        t: stores[rand(3)],
-        y: date.y,
-        f: date.f,
-        tp: types[rand(1)],
-        i: guid.raw(),
-        p: prod.name,
-        u: unit,
-        uc: prod.c,
-        m: parseFloat(unit * prod.c).toFixed(2)
-    });
 }
 // });
 
