@@ -10,22 +10,22 @@ const fs = require('fs'),
     // dates = require('./data/dates.json'),
     dates = [],
     stores = [
-        { n: 'Totonicapan', la: 14.911624, lo: -91.361489, p: 5 },
+        { n: 'Totonicapán', la: 14.911624, lo: -91.361489, p: 5 },
         { n: 'Quetzaltenango', la: 14.833474, lo: -91.517671, p: 5 },
         { n: '4 Caminos', la: 14.908310, lo: -91.441229, p: 2 },
-        { n: 'San Cristobal', la: 14.918593, lo: -91.441145, p: 1 },
-        { n: 'Salcaja', la: 14.878946, lo: -91.459143, p: 3 }],
+        { n: 'San Cristóbal', la: 14.918593, lo: -91.441145, p: 1 },
+        { n: 'Salcajá', la: 14.878946, lo: -91.459143, p: 3 }],
     types = ['Tarjeta', 'Efectivo'],
     products = [
         { n: 'Pan dulce', c: 0.33, p: 6 },
         { n: 'Pan frances', c: 0.33, p: 4 },
         { n: 'Pan de yemas', c: 1, p: 3 },
-        { n: 'Xeca', c: 3, p: 1 },
+        { n: 'Sheca', c: 3, p: 1 },
         { n: 'Concha', c: 1.5, p: 1 },
         { n: 'Champurrada', c: 1, p: 2 },
         { n: 'Pirujo', c: 1, p: 1 },
-        { n: 'Cubiletes', c: 1.5, p: 1 },
-        { n: 'Pan galleta', c: 1, p: 1 },
+        { n: 'Cubilete', c: 1.5, p: 1 },
+        { n: 'Pan de galleta', c: 1, p: 1 },
     ];
 /**
  * @method getIndex obtiene un numero aleatorio
