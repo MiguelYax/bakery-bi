@@ -7,7 +7,7 @@ const fs = require('fs'),
     empty = require('is-empty'),
     guid = require('guid'),
     moment = require('moment'),
-    // dates = require('./data/dates.json'),
+   
     dates = [],
     stores = [
         { n: 'Totonicapán', la: 14.911624, lo: -91.361489, p: 5 },
@@ -53,7 +53,7 @@ let randDate = function (y, m) {
     };
 };
 
-// // let sales = dates.map(function (d, i) {
+
 let date = {},
     unit = 0,
     prod = {},
@@ -93,7 +93,7 @@ for (var i = 0; i < range.length; i++) {
     }
     ++year;
 }
-// });
+
 
 fs.writeFile('data/sales.json', JSON.stringify(sales), function (err) {
     if (err) {
