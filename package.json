@@ -17,9 +17,8 @@
   },
   "homepage": "https://github.com/Krazeus/bakery-bi#readme",
   "dependencies": {
-    "express": "^4.15.3",
-    "guid": "0.0.12",
+    "guid": "^0.0.12",
     "is-empty": "^1.2.0",
-    "moment": "^2.18.1"
+    "moment": "^2.29.3"
   }
 }
